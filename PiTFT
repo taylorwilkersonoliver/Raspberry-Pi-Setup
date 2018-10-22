@@ -1,0 +1,55 @@
+sudo nano /usr/local/bin/topoffsystem
+#!/bin/bash
+sudo apt-get update && sudo apt-get upgrade
+sudo chmod +x /usr/local/bin/topoffsystem
+
+sudo topoffsystem
+
+sudo nano /etc/network/interfaces
+
+auto lo
+ 
+iface lo inet loopback
+iface eth0 inet dhcp
+ 
+allow-hotplug wlan0
+auto wlan0
+ 
+ 
+iface wlan0 inet dhcp
+        wpa-ssid "ssid"
+        wpa-psk "password"
+
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev update_config=1
+ 
+network={
+ssid="YOUR_NETWORK_NAME"
+psk="YOUR_NETWORK_PASSWORD"
+proto=RSN
+key_mgmt=WPA-PSK
+pairwise=CCMP
+auth_alg=OPEN
+} 
+
+sudo apt-get install git avahi-daemon python python-pygame python-imaging python-pip gpsd gpsd-clients python-gps pip install pytz python-rpi.gpio
+sudo easy_install -U picamera
+
+sudo nano /boot/config.txt
+framebuffer_width=640
+framebuffer_height=480
+disable_overscan=1
+overscan_left=36
+overscan_right=18
+overscan_top=0
+overscan_bottom=0
+sdtv_mode=2
+
+sudo raspi-config
+sudo apt-get install python-rpi.gpio
+sudo easy_install -U picamera
+
+/etc/udev/rules.d/99-usb-serial.rules
+
+SUBSYSTEM=="tty", ATTRS{manufacturer}=="arduino", SYMLINK+="uno"
