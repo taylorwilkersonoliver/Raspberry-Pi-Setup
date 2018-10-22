@@ -35,6 +35,7 @@ auth_alg=OPEN
 
 sudo apt-get install git avahi-daemon python python-pygame python-imaging python-pip gpsd gpsd-clients python-gps pip install pytz python-rpi.gpio
 sudo easy_install -U picamera
+pip install xmltodict
 
 sudo nano /boot/config.txt
 framebuffer_width=640
